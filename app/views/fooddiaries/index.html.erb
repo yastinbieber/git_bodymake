@@ -1,0 +1,249 @@
+<div class="container-fuild">
+  <div class="d-flex">
+    <div class="mr-auto p-2"><h2>Food Record</h2></div>
+    <div class="p-2">
+      <%= form_tag(fooddiaries_path, :method => "get") do %>
+        <%= date_field_tag :search, id: "sbox" %> 
+        <%= submit_tag "🔍" ,:created_at => nil, class: "btn btn-raised btn-primary" %> 
+      <% end %>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats text-white bg-primary mb-3">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">food_bank</i>
+          </div>
+          <p class="card-category text-right">Kcal／カロリー</p>
+          <h5 class="card-title text-right"><%= @fooddiary_sum_kcal %>／<%= current_user.idealweight.kcalintake %>
+            <small class="card-text text-white">KCAL</small>
+          </h5>
+          <p class="card-text text-right">残り：<%= current_user.idealweight.kcalintake - @fooddiary_sum_kcal %>kcal</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats text-white bg-primary mb-3">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">android</i>
+          </div>
+          <p class="card-category text-right">Protein／タンパク質</p>
+          <h5 class="card-title text-right"><%= @fooddiary_sum_protein %>／<%= current_user.idealweight.intakeproteingram %>
+            <small class="card-text text-white">G</small>
+          </h5>
+          <p class="card-text text-right">残り：<%= current_user.idealweight.intakeproteingram - @fooddiary_sum_protein %>g</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats text-white bg-primary mb-3">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">local_pizza</i>
+          </div>
+          <p class="card-category text-right">Fat／脂質</p>
+          <h5 class="card-title text-right"><%= @fooddiary_sum_fat %>／<%= current_user.idealweight.intakefatgram %>
+            <small class="card-text text-white">G</small>
+          </h5>
+          <p class="card-text text-right">残り：<%= current_user.idealweight.intakefatgram - @fooddiary_sum_fat %>g</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats text-white bg-primary mb-3">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">rice_bowl</i>
+          </div>
+          <p class="card-category text-right">Carbo／炭水化物</p>
+          <h5 class="card-title text-right"><%= @fooddiary_sum_carbo %>／<%= current_user.idealweight.intakecarbogram %>
+            <small class="card-text text-white">G</small>
+          </h5>
+          <p class="card-text text-right">残り：<%= current_user.idealweight.intakecarbogram - @fooddiary_sum_carbo %>g</p>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <div class="form-group col-md-12"><br>
+        <h5>Foodlist／食事一覧</h5>
+        <hr>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Morning／朝食</th>
+                <th>foodname</th>
+                <th>gram</th>
+                <th>kcal</th>
+                <th>protein</th>
+                <th>fat</th>
+                <th>carbo</th>
+                <th></th>
+              </tr>
+            </thead>
+            <%= render @fooddiary_morning %>
+            <thead>
+              <tr>
+                <th>Lunch／昼食</th>
+                <th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+              </tr>
+            </thead>  
+            <%= render @fooddiary_lunch %>
+            <thead>
+              <tr>
+                <th>Dinner／夕食</th>
+                <th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+              </tr>
+            </thead>
+            <%= render @fooddiary_dinner %>
+            <thead>
+              <tr>
+                <th>Snack／間食</th>
+                <th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+              </tr>
+            </thead>
+            <%= render @fooddiary_snack %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <div class="form-group col-md-12"><br>
+          <h5>Important／数値見える化</h5>
+          <hr>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Total／合計</th>
+              <th>kcal</th>
+              <th>protein</th>
+              <th>fat</th>
+              <th>carbo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <td></td>
+            <td><%= @fooddiary_sum_kcal %>kcal</td>
+            <td><%= @fooddiary_sum_protein %>g</td>
+            <td><%= @fooddiary_sum_fat %>g</td>
+            <td><%= @fooddiary_sum_carbo %>g</td>
+          </tbody>
+          <thead>
+            <tr>
+            <th>Target／目標</th>  
+            <th></th><th></th><th></th><th></th>
+          </thead>
+          <tbody>
+            <td></td>
+            <td><%= current_user.idealweight.kcalintake %>kcal</td>
+            <td><%= current_user.idealweight.intakeproteingram %>g</td>
+            <td><%= current_user.idealweight.intakefatgram %>g</td>
+            <td><%= current_user.idealweight.intakecarbogram %>g</td>
+          </tbody>
+          <thead>
+            <tr>
+              <th>Remaining／残り</th>
+              <th></th><th></th><th></th><th></th>
+            </tr><br>
+          </thead>
+          <tbody>
+            <td></td>
+            <td><%= current_user.idealweight.kcalintake - @fooddiary_sum_kcal %>kcal</td>
+            <td><%= current_user.idealweight.intakeproteingram - @fooddiary_sum_protein %>g</td>
+            <td><%= current_user.idealweight.intakefatgram - @fooddiary_sum_fat %>g</td>
+            <td><%= current_user.idealweight.intakecarbogram - @fooddiary_sum_carbo %>g</td>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+      <div class="card rounded-0 p-0 shadow-sm text-black text-center">
+        <img class="card-img" src="https://cdn.asagei.com/syokuraku/uploads/2019/07/20190711-kinnikumesi01.jpg" alt="Card image cap" style="height: 25rem;">
+        <div class="card-img-overlay"><br><br><br><br>
+          <h5 class="card-title">食事を追加する</h5>
+          <p class="card-text">本日も丁寧に記録していきましょう。</p>
+          <%= link_to "食事を追加する", "/fooddiaries/new", class:"btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <div class="form-group col-md-12"><br>
+          <h5>Progress／進捗</h5>
+          <hr><br>
+          <th>Kcal／カロリー</th>
+          <div class="pull-right"><%= @fooddiary_sum_kcal %>kcal／<%= current_user.idealweight.kcalintake %>kcal</div>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: <%= @fooddiary_sum_kcal*100 / current_user.idealweight.kcalintake %>%;" aria-valuemin="0" aria-valuemax="100">
+            </div>
+          </div>
+          <th>Protein／タンパク質</th>
+          <div class="pull-right"><%= @fooddiary_sum_protein %>g／<%= current_user.idealweight.intakeproteingram %>g</div>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: <%= @fooddiary_sum_protein*100 / current_user.idealweight.intakeproteingram %>%;" aria-valuemin="0" aria-valuemax="100">
+            </div>
+          </div>
+          <th>Fat／脂質</th>
+          <div class="pull-right"><%= @fooddiary_sum_fat %>g／<%= current_user.idealweight.intakefatgram %>g</div>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: <%= @fooddiary_sum_fat*100 / current_user.idealweight.intakefatgram %>%;" aria-valuemin="0" aria-valuemax="100">
+            </div>
+          </div>
+          <th>Carbo／炭水化物</th>
+          <div class="pull-right"><%= @fooddiary_sum_carbo %>g／<%= current_user.idealweight.intakecarbogram %>g</div>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: <%= @fooddiary_sum_carbo*100 / current_user.idealweight.intakecarbogram %>%;" aria-valuemin="0" aria-valuemax="100">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <div class="form-group col-md-12"><br>
+          <h5>Target PFC／目標PFCバランス</h5>
+          <hr>
+            <canvas id="myPieChart"></canvas>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+            <script>
+            var ctx = document.getElementById("myPieChart");
+            var myPieChart = new Chart(ctx, {
+              type: 'pie',
+              data: {
+                labels: ["Protein", "Fat", "Carbo"],
+                datasets: [{
+                    backgroundColor: [
+                        "#BB5179",
+                        "#FAFF67",
+                        "#3C00FF"
+                    ],
+                    data: [<%= current_user.idealweight.intakeproteingram %>, 
+                    <%= current_user.idealweight.intakefatgram %>,
+                    <%= current_user.idealweight.intakecarbogram %>]
+                }]
+              },
+              options: {
+                title: {
+                  // display: true,
+                  // text: '血液型 割合'
+                }
+              }
+            });
+            </script>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  
+  

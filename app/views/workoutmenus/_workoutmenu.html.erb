@@ -1,0 +1,19 @@
+<tbody>
+  <tr>
+    <td><%= workoutmenu.workoutdate.menu %></td>
+    <td><%= workoutmenu.settype %></td>
+    <td><%= workoutmenu.weight %>kg</td>
+    <td><%= workoutmenu.reps %>reps</td>
+    <td>
+      <div class="dropdown">
+        <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="material-icons">more_vert</i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex1">
+          <%= link_to "編集", "/workoutmenus/#{workoutmenu.id}/edit", class: "dropdown-item" %>
+          <%= link_to '削除', workoutmenu_path(workoutmenu), method: :delete, remote: true, class: "dropdown-item" %>
+        </div>
+      </div>
+    </td>
+  </tr>
+</tbody>

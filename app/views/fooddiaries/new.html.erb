@@ -1,0 +1,54 @@
+<div class="container">
+  <h2>Let's Foodrecord</h2>
+  <hr>
+  <p>Please enter the food you actually ate.</p>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <%= form_for @fooddiary do |f| %>
+            <%= f.label :Foodmenu／食品名 %>
+            <div class="form-group">
+            <%= f.collection_select :fooddate_id, Fooddate.all, :id, :foodname, {}, class: 'form-control' %><br><br>
+            </div>
+            <%= f.label :gram／グラム %>
+            <%= f.number_field :gram, placeholder: "gram", class: 'form-control' %><br>
+            <%= f.label :timing／タイミング %>
+            <div class="card-deck">
+              <div class="card bg-light mb-3" style="max-width: 20rem;">
+                <div class="card-header">
+                  <div class="radio">
+                    <label><%= f.radio_button :timing, "朝食" %>朝食</label>
+                  </div>
+                </div>
+              </div>
+              <div class="card bg-light mb-3" style="max-width: 20rem;">
+                <div class="card-header">
+                  <div class="radio">
+                    <label><%= f.radio_button :timing, "昼食" %>昼食</label>
+                  </div>
+                </div>
+              </div>
+              <div class="card bg-light mb-3" style="max-width: 20rem;">
+                <div class="card-header">
+                  <div class="radio">
+                    <label><%= f.radio_button :timing, "夕食" %>夕食</label>
+                  </div>
+                </div>
+              </div>
+              <div class="card bg-light mb-3" style="max-width: 20rem;">
+                <div class="card-header">
+                  <div class="radio">
+                    <label><%= f.radio_button :timing, "間食" %>間食</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <%= f.submit "送信", class: "btn btn-raised btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+※追加ボタンを作成しブロックを増やせるようにし一度で全ての記入を可能としたい

@@ -1,0 +1,167 @@
+<div class="container">
+  <h4>選択するメニューを押下してください</h4>
+  <hr>
+  <p>あなたの目的にあったメニューになります。選択肢から本日行うメニューを選択してください。</p>
+  <div class="form-group">
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Check !</h4>
+      <p>提案されたメニューが複数ある場合は前回のトレーニングメニューと異なるメニューを選択するようにしてください。 </p>
+    </div>
+  </div>
+  <% if current_user.useradvice.purpose == "ダイエット" && current_user.useradvice.frequency == 1 %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <img class="card-img-top" src="https://myrevo.jp/fitness/wp-content/uploads/sites/4/2019/12/shutterstock_395138095.jpg" alt="" style="height: 30rem;">
+        <div class="card-body">
+          <h5 class="card-title">メニューA</h5>
+          <p class="card-text">
+            <% @advicemenu_a.each do |advicemenu| %>
+            ■<%= advicemenu.menu %><br>
+            <% end %>
+          </p>
+          <%= link_to "チョイスする", new_advicediary_path(group: "A"), class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% elsif current_user.useradvice.purpose == "ダイエット" && current_user.useradvice.frequency == 2 %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <img class="card-img-top" src="https://myrevo.jp/fitness/wp-content/uploads/sites/4/2019/12/shutterstock_395138095.jpg" alt="" style="height: 30rem;">
+        <div class="card-body">
+          <h5 class="card-title">メニューA</h5>
+          <p class="card-text">
+            <% @advicemenu_b.each do |advicemenu| %>
+            ■<%= advicemenu.menu %><br>
+            <% end %>
+          </p>
+          <%= link_to "チョイスする", new_advicediary_path(group: "B"), class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <img class="card-img-top" src="https://common-fitness.com/wp-content/uploads/2019/01/18/150512-460245.jpg" alt="" style="height: 30rem;">
+        <div class="card-body">
+          <h5 class="card-title">メニューB</h5>
+          <p class="card-text">
+            <% @advicemenu_c.each do |advicemenu| %>
+            ■<%= advicemenu.menu %><br>
+            <% end %>
+          </p>
+          <%= link_to "チョイスする", new_advicediary_path(group: "C"), class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% elsif current_user.useradvice.purpose == "ダイエット" && current_user.useradvice.frequency == 3 %>
+    <h4><%= link_to "メニューA", new_advicediary_path(group: "D") %></h4>
+    <% @advicemenu_d.each do |advicemenu| %>
+      <%= advicemenu.menu %>
+      <%= advicemenu.minimam_reps %>
+      <%= advicemenu.max_reps %><br>
+    <% end %>
+    <h4><%= link_to "メニューB", new_advicediary_path(group: "E") %></h4>
+    <% @advicemenu_e.each do |advicemenu| %>
+      <%= advicemenu.menu %>
+      <%= advicemenu.minimam_reps %>
+      <%= advicemenu.max_reps %><br>
+    <% end %>
+    <h4><%= link_to "メニューC", new_advicediary_path(group: "F") %></h4>
+    <% @advicemenu_f.each do |advicemenu| %>
+      <%= advicemenu.menu %>
+      <%= advicemenu.minimam_reps %>
+      <%= advicemenu.max_reps %><br>
+    <% end %>
+  <% elsif current_user.useradvice.purpose == "ダイエット" && current_user.useradvice.frequency == 4 %>
+    <h4><%= link_to "メニューA", new_advicediary_path(group: "G") %></h4>
+    <% @advicemenu_g.each do |advicemenu| %>
+      <%= advicemenu.menu %>
+      <%= advicemenu.minimam_reps %>
+      <%= advicemenu.max_reps %><br>
+    <% end %>
+    <h4><%= link_to "メニューB", new_advicediary_path(group: "H") %></h4>
+    <% @advicemenu_h.each do |advicemenu| %>
+      <%= advicemenu.menu %>
+      <%= advicemenu.minimam_reps %>
+      <%= advicemenu.max_reps %><br>
+    <% end %>
+    <h4><%= link_to "メニューC", new_advicediary_path(group: "I") %></h4>
+    <% @advicemenu_i.each do |advicemenu| %>
+      <%= advicemenu.menu %>
+      <%= advicemenu.minimam_reps %>
+      <%= advicemenu.max_reps %><br>
+    <% end %>
+    <h4><%= link_to "メニューD", new_advicediary_path(group: "J") %></h4>
+    <% @advicemenu_j.each do |advicemenu| %>
+      <%= advicemenu.menu %>
+      <%= advicemenu.minimam_reps %>
+      <%= advicemenu.max_reps %><br>
+    <% end %>
+  <% elsif current_user.useradvice.purpose == "ダイエット" && current_user.useradvice.frequency == 5 %>
+  <div class="card-deck">
+    <div class="card" style="width: 25rem;">
+      <img class="card-img-top" src="https://smartlog-stat2.imgix.net/uploads/content/piece/2018/9/xyeasj/shutterstock_336330497-689x460.jpg?w=689&h=460&auto=compress&q=40" alt="Card image cap" style="height: 15rem;">
+      <div class="card-body">
+        <h5 class="card-title">メニューA</h5>
+        <p class="card-text">
+          <% @advicemenu_k.each do |advicemenu| %>
+          ■<%= advicemenu.menu %><br>
+          <% end %>
+        </p>
+        <%= link_to "Go somewhere", new_advicediary_path(group: "K"), class: 'btn btn-primary' %>
+      </div>
+    </div>
+    <div class="card" style="width: 25rem;">
+      <img class="card-img-top" src="https://bodymaking.jp/wp-content/uploads/2017/05/hack-squat_00.png" alt="" style="height: 15rem;">
+      <div class="card-body">
+        <h5 class="card-title">メニューB</h5>
+        <p class="card-text">
+          <% @advicemenu_l.each do |advicemenu| %>
+          ■<%= advicemenu.menu %><br>
+          <% end %>
+        </p>
+        <%= link_to "Go somewhere", new_advicediary_path(group: "L"), class: 'btn btn-primary' %>
+      </div>
+    </div>
+    <div class="card" style="width: 25rem;">
+      <img class="card-img-top" src="https://smartlog-stat2.imgix.net/uploads/content/piece/2019/4/tb7kc8/shutterstock_1188547474.jpg?w=689&h=459&auto=compress&q=35" alt="Card image cap" style="height: 15rem;">
+      <div class="card-body">
+        <h5 class="card-title">メニューC</h5>
+        <p class="card-text">
+          <% @advicemenu_m.each do |advicemenu| %>
+          ■<%= advicemenu.menu %><br>
+          <% end %>
+        </p>
+        <%= link_to "Go somewhere", new_advicediary_path(group: "M"), class: 'btn btn-primary' %>
+      </div>
+    </div>
+    <div class="card" style="width: 25rem;">
+      <img class="card-img-top" src="https://mensdiet.net/wp-content/uploads/2018/07/db981c432e433b7566e6cc76f71fe5e2.gif" alt="Card image cap" style="height: 15rem;">
+      <div class="card-body">
+        <h5 class="card-title">メニューD</h5>
+        <p class="card-text">
+          <% @advicemenu_n.each do |advicemenu| %>
+          ■<%= advicemenu.menu %><br>
+          <% end %>
+        </p>
+        <%= link_to "Go somewhere", new_advicediary_path(group: "N"), class: 'btn btn-primary' %>
+      </div>
+    </div>
+    <div class="card" style="width: 25rem;">
+      <img class="card-img-top" src="https://smartlog-stat2.imgix.net/uploads/content/piece/2019/7/4o0i49/shutterstock_609764243.jpg?w=689&h=459&auto=compress&q=35" alt="Card image cap" style="height: 15rem;">
+      <div class="card-body">
+        <h5 class="card-title">メニューE</h5>
+        <p class="card-text">
+          <% @advicemenu_o.each do |advicemenu| %>
+          ■<%= advicemenu.menu %><br>
+          <% end %>
+        </p>
+        <%= link_to "Go somewhere", new_advicediary_path(group: "O"), class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

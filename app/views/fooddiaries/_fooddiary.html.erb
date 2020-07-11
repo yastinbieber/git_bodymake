@@ -1,0 +1,22 @@
+<tbody>
+  <tr>
+    <td></td>
+    <td><%= fooddiary.fooddate.foodname %></td>
+    <td><%= fooddiary.gram %>g</td>
+    <td><%= fooddiary.kcal %>kcal</td>
+    <td><%= fooddiary.protein %>g</td>
+    <td><%= fooddiary.fat %>g</td>
+    <td><%= fooddiary.carbo %>g</td>
+    <td>
+      <div class="dropdown">
+        <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="material-icons">more_vert</i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex1">
+          <%= link_to "編集", edit_fooddiary_path(fooddiary), class: "dropdown-item" %>
+          <%= link_to '削除', fooddiary_path(fooddiary), method: :delete, remote: true, class: "dropdown-item" %>
+        </div>
+      </div>
+    </td>
+  </tr>
+</tbody>

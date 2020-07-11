@@ -1,0 +1,46 @@
+<div class="container-fuild">
+  <% if current_user.useradvice.present? %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <div class="card-header text-center"><br>
+          <h3><%= current_user.username %>のボディメイク目標</h3><br>
+          <p>入力いただいた情報からボディメイク目標を算出しました。
+          <br>目標達成に向け地に足をつけ頑張っていきましょう</p>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <tr><th>BodymakePurpose／ボディメイク目的</th><th><%= current_user.useradvice.purpose %></th></tr>
+            <tr><th>BodymakeFrequency／ボディメイク頻度</th><th>週<%= current_user.useradvice.frequency %>日</th></tr>
+            <tr><td>Bodymake／ボディメイク期間</td><td><%= current_user.idealweight.period %>日</td></tr>
+            <tr><th>Exerciselevel／運動量レベル</th><th><%= current_user.idealweight.exerciselevel %></th></tr>
+            <tr><td>TargetWeight／目標体重</td><td><%= current_user.idealweight.targetweight %>kg</td></tr>
+            <tr><td>Gap／乖離</td><td><%= current_user.idealweight.minusweight %>kg</td></tr>
+          </table>
+        </div>
+        <%= link_to "back", advicediaries_path, class: 'btn btn-primary' %><br>
+      </div>
+    </div>
+  </div>
+  <% else %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <div class="card-header"><br>
+          <h3><%= current_user.username %>の食事目標</h3><br>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <tr><td>Fooddiaryperiod／食事管理期間</td><td><%= current_user.idealweight.period %>日</td></tr>
+            <tr><th>Exerciselevel／運動量レベル</th><th><%= current_user.idealweight.exerciselevel %></th></tr>
+            <tr><td>TargetWeight／目標体重</td><td><%= current_user.idealweight.targetweight %>kg</td></tr>
+            <tr><td>Gap／乖離</td><td><%= current_user.idealweight.minusweight %>kg</td></tr>
+          </table>
+        </div>
+        <%= link_to "back", fooddiaries_path, class: 'btn btn-primary' %><br>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  
+</div>

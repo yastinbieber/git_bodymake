@@ -1,0 +1,30 @@
+<div class="container">
+  <h2><%= current_user.username %>のページ</h2>
+  <hr>
+  <div class="card" style="width: 25rem;">
+    <% if current_user.image.attached? %>
+      <%= image_tag current_user.image, class: "card-img-top" %>
+    <% else %>
+      <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg" alt="User picture">
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title"><%= @username %></h5>
+      <p class="card-text"><%= simple_format(current_user.text) %></p>
+      <% if current_user.id == current_user.id %>
+        <%= link_to "プロフィール編集", edit_user_path(current_user), {:class => "btn btn-primary" } %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <%= link_to "GO", "/weightchanges/", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  

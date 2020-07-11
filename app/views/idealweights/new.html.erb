@@ -1,0 +1,85 @@
+<div class="container-fuild">
+  <h3>下記情報を入力してください</h3>
+  <hr>
+  <p>情報を入力することで1日あたりに必要な栄養素を割り出すことができます。</p>
+  <div class="card">
+    <div class="card-body">
+      <%= form_for @idealweight do |f| %>
+        <%= f.label :height／身長 %>
+        <%= f.number_field :height, placeholder: "height", class: 'form-control' %><br>
+        <%= f.label :weight／現在の体重 %>
+        <%= f.number_field :weight, placeholder: "weight", class: 'form-control' %><br>
+        <%= f.label :targetweight／目標体重 %>
+        <%= f.number_field :targetweight, placeholder: "targetweight", class: 'form-control' %><br>
+        <div class="form-group col-md-12">
+          <%= f.label :exerciselevel（運動量レベル） %><br>
+          <div class="card-deck">
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :exerciselevel, "1.2" %>運動はほとんどしていない</label>
+                </div>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :exerciselevel, "1.375" %>1週間に1，2回軽い運動をする</label>
+                </div>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :exerciselevel, "1.55" %>1週間に2，3回筋トレをする</label>
+                </div>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :exerciselevel, "1.725" %>1週間に4～6回は結構激しい筋トレをする</label>
+                </div>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :exerciselevel, "1.9" %>ほぼ毎日かなり激しい筋トレをする</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-12">
+          <%= f.label :period／ボディメイク期間 %><br>
+          <div class="card-deck">
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :period, "30" %>30日間</label>
+                </div>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :period, "60" %>60日間</label>
+                </div>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :period, "90" %>90日間</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= f.submit "送信", class: "btn btn-raised btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+

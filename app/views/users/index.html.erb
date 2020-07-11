@@ -1,0 +1,10 @@
+<%= form_tag(workoutmenus_path, :method => "get") do %>
+    <%= date_field_tag :search %> 
+    <%= submit_tag "Search" ,:created_at => nil ,class: "" %> 
+<% end %>
+<% @workoutmenus.each do |workoutmenu| %>
+  <td><%= workoutmenu.workoutdate.menu %></td>
+  <td><%= workoutmenu.settype %></td>
+  <td><%= workoutmenu.weight %>kg</td>
+  <td><%= workoutmenu.reps %>reps</td>
+<% end %>

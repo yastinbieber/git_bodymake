@@ -1,0 +1,45 @@
+<div class="container-fuild">
+  <div class="d-flex">
+    <div class="mr-auto p-2"><h2>Training Record</h2></div>
+    <div class="p-2">
+      <%= form_tag(workoutmenus_path, :method => "get") do %>
+        <%= date_field_tag :search, id: "sbox" %> 
+        <%= submit_tag "🔍" ,:created_at => nil, class: "btn btn-raised btn-primary" %> 
+      <% end %>
+    </div>
+  </div>
+  <hr>
+  <p>日付毎にトレーニング記録が管理されております。下記より日付を指定して確認してください。</p>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <div class="card-body">
+          <h5>Todays TrainingList／本日実施のトレーニングメニュー</h5>
+          <hr>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>menu</th>
+                <th>settype</th>
+                <th>weight</th>
+                <th>reps</th>
+                <th></th>
+              </tr>
+            </thead>
+          <%= render @workoutmenus %>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+      <div class="card rounded-0 p-0 shadow-sm text-red text-center">
+        <img class="card-img" src="https://assets.st-note.com/production/uploads/images/8596371/picture_pc_1e560f2a1716806a942a9a57eebdc00e.jpg" alt="Card image cap" style="height: 25rem;">
+        <div class="card-img-overlay"><br><br><br><br>
+          <h5 class="card-title">トレーニングを追加する</h5>
+          <p class="card-text">本日もしっかりと記録していきましょう。</p>
+          <%= link_to "トレーニングを追加する", "/workoutmenus/new", class: "btn btn-raised btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,149 @@
+<div class="container-fuild">
+  <h2><%= current_user.username %>の体重管理</h2>
+  <hr>
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats text-white bg-primary mb-3">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">today</i>
+          </div>
+          <p class="card-category text-right">TodayWeight／本日の体重</p>
+          <% if @weightchange_today.present? %>
+          <h5 class="card-title text-right"><%= @weightchange_today.todayweight %>
+            <small class="card-text text-white">KG</small>
+          </h5>
+          <% else %>
+            <h5 class="card-title text-right"><%= link_to "本日の体重を記録する", new_weightchange_path, class: "btn btn-danger" %></h5>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats text-white bg-primary mb-3">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">date_range</i>
+          </div>
+          <p class="card-category text-right">TargetWeight／目標体重</p>
+          <h5 class="card-title text-right"><%= current_user.idealweight.targetweight %>
+            <small class="card-text text-white">KG</small>
+          </h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats text-white bg-primary mb-3">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">event</i>
+          </div>
+          <p class="card-category text-right">BodymakePeriod／ボディメイク期間</p>
+          <h5 class="card-title text-right"><%= @sum_column %>日目／<%= current_user.idealweight.period %>
+            <small class="card-text text-white">日</small>
+          </h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="card card-stats text-white bg-secondary mb-3">
+        <div class="card-header card-header-warning card-header-icon">
+          <div class="card-icon">
+            <i class="material-icons">create</i>
+          </div>
+          <p class="card-category text-right">WeightRecord／本日の体重を記録する</p>
+          <h5 class="card-title text-right"><%= link_to "本日の体重を記録する", new_weightchange_path, class: "btn btn-primary" %></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <div class="form-group col-md-12"><br>
+          <h5>WeightDiaryRecord／体重記録</h5>
+          <hr>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date／日付</th>
+                  <th>Weight／体重</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @weightchanges.each do |weightchange| %>
+                <tr><td><%= weightchange.date %></td>
+                <td><%= weightchange.todayweight %>Kg</td>
+                <td><%= link_to "編集", edit_weightchange_path(weightchange), class: "" %></td>
+                <td><%= link_to '削除', weightchange_path(weightchange), method: :delete, remote: true, class: "" %></td></tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <div class="form-group col-md-12"><br>
+          <h5>WeightChange／期間中体重推移</h5>
+          <hr>
+          <% if @weightchanges.present? %>
+          <canvas id="myLineChart"></canvas>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+          <script>
+          var ctx = document.getElementById("myLineChart");
+          var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: <%= @labels.to_json.html_safe %>,
+              // labels: ["0701", "0702", "0703", "0704", "0705", "0706", "0707"],
+              datasets: [
+                {
+                  label: '実績推移',
+                  data: <%= @datas %>,
+                  borderColor: "rgba(255,0,0,1)",
+                  backgroundColor: "rgba(0,0,0,0)"
+                },
+                // {
+                //   label: '期待値',
+                //   data: [65, 64, 63, 62, 61, 60, 59, 58],
+                //   borderColor: "rgba(0,0,255,1)",
+                //   backgroundColor: "rgba(0,0,0,0)"
+                // }
+              ],
+            },
+            options: {
+              title: {
+                display: true,
+                text: '体重推移（○月☓日~○月☓日）'
+              },
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    suggestedMax: <%= @max %> +5,
+                    suggestedMin: <%= @minimum %> -5,
+                    stepSize: 1,
+                    callback: function(value, index, values){
+                      return  value +  'KG'
+                    }
+                  }
+                }]
+              },
+            }
+          });
+          </script>
+          <% else %>
+          <p>Nodate...</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,43 @@
+<div class="container-fuild">
+  <% if current_user.idealweight.present? %>
+  <h2>Food Diary</h2>
+  <hr>
+  <p>Food is the most important thing for bodymake. If you can't manage yourself, you can't succeed.</p>
+  <p> Let's start!</p>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="card rounded-0 p-0 shadow-sm">
+        <img class="card-img-top" src="https://dol.ismcdn.jp/mwimgs/1/f/670m/img_1f2ee769c22f051eec72d1039c359b4c1241626.jpg" alt="Card image cap" style="height: 30rem;">
+        <div class="card-body">
+          <h5 class="card-title">本日の食事内容を記録する</h5>
+          <p class="card-text">ボディメイクにおいて食事はとても大切です。しっかりと記録しましょう。</p>
+          <%= link_to "Go somewhere", "/fooddiaries/new", class: "btn btn-raised btn-primary" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+      <div class="card rounded-0 p-0 shadow-sm">
+      <img class="card-img-top" src="https://wglint.com/wp-content/uploads/2017/01/pie-chart-1569175_960_720-300x246.jpg" alt="Card image cap" style="height: 30rem;">
+        <div class="card-body">
+          <h5 class="card-title">食事内容を確認する</h5>
+          <p class="card-text">これまで記録した食事内容を確認することもとても大切！</p>
+          <%= link_to "Go somewhere", "/fooddiaries", class: "btn btn-raised btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% else %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-md-offset-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">食事管理に必要な情報を入力しよう</h5>
+          <p class="card-text">情報を入力することで1日あたりの必要なPFCを知ることができます</p>
+          <%= link_to "Go somewhere", "/idealweights/new", class: "btn btn-raised btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+

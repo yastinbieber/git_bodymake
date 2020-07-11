@@ -1,0 +1,116 @@
+<div class="container-fuild">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>トレーニングアドバイスを受けるためにあなたの目標を入力しましょう（初回のみ）</h2>
+      <hr>
+      <p>『目的』『トレーニング頻度』を入力することであなたにあったトレーニングを提案することができます。</p>
+      <div class="card">
+        <div class="card-body">
+          <%= form_for @useradvice do |f| %>
+          <br><h5>purpose／ボディメイク目的</h5>
+          <hr>
+          <div class="card-deck">
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :purpose, "ダイエット" %>ダイエット</label>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">食事管理とトレーニングによってダイエットを目指すプランです</p>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :purpose, "筋力UP" %>筋力UP</label>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">増量をしながらトレーニングを行いバックアップを目指すプランです</p>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :purpose, "美尻" %>美尻</label>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">集中的にお尻付近を鍛え美尻を目指すプランです</p>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :purpose, "美女コース" %>美女コース</label>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">美しい女性を目指し必要な部位を鍛えていくプランです</p>
+              </div>
+            </div>
+          </div>
+          <br>
+          <h5>frequency／トレーニング頻度</h5>
+          <hr>
+          <div class="card-deck">
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :frequency, "1" %>週1日</label>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">お忙しい方は無理なく週1日頑張りましょう</p>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :frequency, "2" %>週2日</label>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">身体を変えたければ週2日は頑張りましょう</p>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :frequency, "3" %>週3日</label>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">週3日トレーニングできれば早期で身体を変えることができます</p>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :frequency, "4" %>週4日</label>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">短期で成果を出したければ週4日頑張りましょう</p>
+              </div>
+            </div>
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+              <div class="card-header">
+                <div class="radio">
+                  <label><%= f.radio_button :frequency, "5" %>週5日</label>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="card-text">本格的にトレーニングしたい方は週5日頑張りましょう</p>
+              </div>
+            </div>
+          </div>
+            <%= f.submit "次へ", class: "btn btn-raised btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

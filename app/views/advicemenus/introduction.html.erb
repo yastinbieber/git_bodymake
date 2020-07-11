@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Training Howto</h2>
+  <hr>
+  <p>このページでは基本メニューのトレーニング方法を動画でわかりやすく確認することができます。<br>また同類のトレーニング毎に分けられておりトレーニング名を検索することで同じ意味を持つトレーニングを割り出すことができます。</p><br>
+  <h3>Search</h3>
+  <hr>
+  <div class="form-group">
+  <%= form_tag(introduction_advicemenus_path, :method => "get") do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag "🔍" ,:menu => nil, class: "btn btn-raised btn-primary" %>
+  <% end %>
+  </div>
+  <div class="card-desk">
+  <% @advicemenus.each do |advicemenu| %>
+    <div class="card" style="width: 20rem; height: 20rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= advicemenu.menu %></h5>
+        <h6 class="card-subtitle mb-2 text-muted">Target</h6>
+        <a href="#" class="btn btn-raised btn-primary">Howto Movie</a>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

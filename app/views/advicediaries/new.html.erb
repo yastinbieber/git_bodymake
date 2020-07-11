@@ -1,0 +1,63 @@
+<div class="container">
+  <h2>Suggested menu</h2>
+  <hr>
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img class="card-img-top" src="https://qool.jp/wp-content/uploads/2020/04/shutterstock_388202932.png" alt="Card image cap" width="100%" height="200">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Todays menu</h5>
+          <p class="card-text">
+            <% @advicemenus.each do |advicemenu| %>
+              ■<%= advicemenu.menu %>
+              <%= advicemenu.minimam_reps %> ~
+              <%= advicemenu.max_reps %>回
+              <%= advicemenu.sets %>セット<br>
+            <% end %>
+          </p>
+          <p class="card-text"><small class="text-muted">マシンの空き状況に応じて選定してください</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Check !</h4>
+      <p>マシンの空き状況を見てメニューを選定するようにしてください。<br>
+      下記のリンクに同じ意味合いのトレーニングをグループごとに分けているので参考にしながらトレーニングを行ってください<br>
+      例えばベンチプレスであれば『バーベルベンチプレス』『ダンベルベンチプレス』『スミスマシンベンチプレス』などベンチプレスと言っても複数のマシンで同じ効果を得ることができます。</p>
+      <%= link_to "Training-Group", "/advicemenus/introduction", class: 'btn btn-raised btn-primary' %>
+    </div>
+  </div>
+  <br>
+  <h2>Training record</h2>
+  <hr><br>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <%= form_for @advicediary do |f| %>
+          <div class="form-group col-md-12">
+            <%= f.label :menu（メニュー） %>
+            <%= f.collection_select :advicemenu_id, Advicemenu.all, :id, :menu, {}, class: 'form-control' %>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <%= f.label :weight（重量）, class: "bmd-label-floating" %>
+            <%= f.number_field :weight, class: 'form-control' %>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <%= f.label :reps（回数）, class: "bmd-label-floating" %>
+            <%= f.number_field :reps, class: 'form-control' %>
+          </div>
+          <div class="form-group col-md-12">
+            <br><%= f.submit "送信", class: "btn btn-raised btn-primary" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
